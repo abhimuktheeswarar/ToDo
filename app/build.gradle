@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.abeemukthees.todo"
+        minSdkVersion versions.minSdk
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning', 'InvalidPackage'
+    }
+}
+
+dependencies {
+
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation supportLibraries.appCompat
+    implementation supportLibraries.recyclerView
+    implementation supportLibraries.constraintLayout
+    implementation supportLibraries.design
+    implementation supportLibraries.viewModel
+
+    implementation libraries.rxAndroid
+    implementation libraries.rxBinding
+    implementation libraries.koin
+    implementation libraries.koinAndroid
+    implementation libraries.koinAndroidArchitecture
+
+    implementation libraries.timber
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation "android.arch.core:core-testing:1.1.1"
+
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:3.0.2")
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+}

@@ -1,0 +1,37 @@
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations.all {
+
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile libraries.kotlinStdlib
+    compile libraries.kotlinReflect
+    compile libraries.rxJava
+    compile libraries.rxKotlin
+    implementation libraries.rxRedux
+    compile libraries.rxRelay
+    compile libraries.koin
+
+    implementation libraries.moshi
+    implementation libraries.moshiKotlin
+    kapt libraries.moshiCodeGen
+
+    testImplementation testLibraries.koinTest
+
+    testImplementation libraries.moshi
+    testImplementation libraries.moshiKotlin
+
+
+}
+
+
